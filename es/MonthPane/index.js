@@ -1,5 +1,4 @@
-import "antd/es/radio/style";
-import _Radio from "antd/es/radio";
+import { Radio } from 'antd';
 import React from 'react';
 import InputFromInterval from './InputFromInterval';
 import InputFromTo from './InputFromTo';
@@ -8,12 +7,10 @@ var radioStyle = {
   display: 'block',
   lineHeight: '32px'
 };
-
 function MonthPane(props) {
   var value = props.value,
-      onChange = props.onChange;
+    onChange = props.onChange;
   var currentRadio = 0;
-
   if (value === '*') {
     currentRadio = 0;
   } else if (value.indexOf('-') > -1) {
@@ -23,37 +20,35 @@ function MonthPane(props) {
   } else {
     currentRadio = 3;
   }
-
   var onChangeRadio = function onChangeRadio(e) {
     var valueType = e.target.value;
     var defaultValues = ['*', '1-1', '1/1', '1'];
     onChange(defaultValues[valueType]);
   };
-
-  return /*#__PURE__*/React.createElement(_Radio.Group, {
+  return /*#__PURE__*/React.createElement(Radio.Group, {
     style: {
       width: '100%'
     },
     value: currentRadio,
     onChange: onChangeRadio
-  }, /*#__PURE__*/React.createElement(_Radio, {
+  }, /*#__PURE__*/React.createElement(Radio, {
     style: radioStyle,
     value: 0
-  }, "\u6BCF\u4E00\u6708"), /*#__PURE__*/React.createElement(_Radio, {
+  }, "\u6BCF\u4E00\u6708"), /*#__PURE__*/React.createElement(Radio, {
     style: radioStyle,
     value: 1
   }, /*#__PURE__*/React.createElement(InputFromTo, {
     disabled: currentRadio !== 1,
     value: value,
     onChange: onChange
-  })), /*#__PURE__*/React.createElement(_Radio, {
+  })), /*#__PURE__*/React.createElement(Radio, {
     style: radioStyle,
     value: 2
   }, /*#__PURE__*/React.createElement(InputFromInterval, {
     disabled: currentRadio !== 2,
     value: value,
     onChange: onChange
-  })), /*#__PURE__*/React.createElement(_Radio, {
+  })), /*#__PURE__*/React.createElement(Radio, {
     style: radioStyle,
     value: 3
   }, /*#__PURE__*/React.createElement(InputSpecified, {
@@ -62,5 +57,4 @@ function MonthPane(props) {
     onChange: onChange
   })));
 }
-
 export default MonthPane;

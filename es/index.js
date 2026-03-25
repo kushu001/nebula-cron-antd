@@ -1,9 +1,6 @@
 import _objectSpread from "@babel/runtime/helpers/esm/objectSpread2";
-import "antd/es/button/style";
-import _Button from "antd/es/button";
 import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
-import "antd/es/tabs/style";
-import _Tabs from "antd/es/tabs";
+import { Button, Tabs } from 'antd';
 import React, { useCallback, useEffect, useState } from 'react';
 import { dayRegex, hourRegex, minuteRegex, monthRegex, secondRegex, weekRegex, yearRegex } from './cron-regex';
 import DayPane from './DayPane';
@@ -13,13 +10,12 @@ import MonthPane from './MonthPane';
 import SecondPane from './SecondPane';
 import WeekPane from './WeekPane';
 import YearPane from './YearPane';
-var TabPane = _Tabs.TabPane;
+var TabPane = Tabs.TabPane;
 var tabPaneStyle = {
   paddingLeft: 10,
   paddingBottom: 8,
   marginTop: -10
 };
-
 var getTabTitle = function getTabTitle(text) {
   return /*#__PURE__*/React.createElement("div", {
     style: {
@@ -28,67 +24,56 @@ var getTabTitle = function getTabTitle(text) {
     }
   }, text);
 };
-
 function Cron(props) {
   var style = props.style,
-      footerStyle = props.footerStyle,
-      footerRenderer = props.footerRenderer,
-      value = props.value,
-      onOk = props.onOk;
-
+    footerStyle = props.footerStyle,
+    footerRenderer = props.footerRenderer,
+    value = props.value,
+    onOk = props.onOk;
   var _useState = useState('1'),
-      _useState2 = _slicedToArray(_useState, 2),
-      currentTab = _useState2[0],
-      setCurrentTab = _useState2[1];
-
+    _useState2 = _slicedToArray(_useState, 2),
+    currentTab = _useState2[0],
+    setCurrentTab = _useState2[1];
   var _useState3 = useState('*'),
-      _useState4 = _slicedToArray(_useState3, 2),
-      second = _useState4[0],
-      setSecond = _useState4[1];
-
+    _useState4 = _slicedToArray(_useState3, 2),
+    second = _useState4[0],
+    setSecond = _useState4[1];
   var _useState5 = useState('*'),
-      _useState6 = _slicedToArray(_useState5, 2),
-      minute = _useState6[0],
-      setMinute = _useState6[1];
-
+    _useState6 = _slicedToArray(_useState5, 2),
+    minute = _useState6[0],
+    setMinute = _useState6[1];
   var _useState7 = useState('*'),
-      _useState8 = _slicedToArray(_useState7, 2),
-      hour = _useState8[0],
-      setHour = _useState8[1];
-
+    _useState8 = _slicedToArray(_useState7, 2),
+    hour = _useState8[0],
+    setHour = _useState8[1];
   var _useState9 = useState('*'),
-      _useState10 = _slicedToArray(_useState9, 2),
-      day = _useState10[0],
-      setDay = _useState10[1];
-
-  var _useState11 = useState('*'),
-      _useState12 = _slicedToArray(_useState11, 2),
-      month = _useState12[0],
-      setMonth = _useState12[1];
-
-  var _useState13 = useState('?'),
-      _useState14 = _slicedToArray(_useState13, 2),
-      week = _useState14[0],
-      setWeek = _useState14[1];
-
-  var _useState15 = useState('*'),
-      _useState16 = _slicedToArray(_useState15, 2),
-      year = _useState16[0],
-      setYear = _useState16[1];
-
+    _useState0 = _slicedToArray(_useState9, 2),
+    day = _useState0[0],
+    setDay = _useState0[1];
+  var _useState1 = useState('*'),
+    _useState10 = _slicedToArray(_useState1, 2),
+    month = _useState10[0],
+    setMonth = _useState10[1];
+  var _useState11 = useState('?'),
+    _useState12 = _slicedToArray(_useState11, 2),
+    week = _useState12[0],
+    setWeek = _useState12[1];
+  var _useState13 = useState('*'),
+    _useState14 = _slicedToArray(_useState13, 2),
+    year = _useState14[0],
+    setYear = _useState14[1];
   var onParse = function onParse() {
     if (value) {
       try {
         var _value$split = value.split(' '),
-            _value$split2 = _slicedToArray(_value$split, 7),
-            secondVal = _value$split2[0],
-            minuteValue = _value$split2[1],
-            hourVal = _value$split2[2],
-            dayVal = _value$split2[3],
-            monthVal = _value$split2[4],
-            weekVal = _value$split2[5],
-            yearVal = _value$split2[6];
-
+          _value$split2 = _slicedToArray(_value$split, 7),
+          secondVal = _value$split2[0],
+          minuteValue = _value$split2[1],
+          hourVal = _value$split2[2],
+          dayVal = _value$split2[3],
+          monthVal = _value$split2[4],
+          weekVal = _value$split2[5],
+          yearVal = _value$split2[6];
         secondVal = secondRegex.test(secondVal) ? secondVal : '*';
         minuteValue = minuteRegex.test(minuteValue) ? minuteValue : '*';
         hourVal = hourRegex.test(hourVal) ? hourVal : '*';
@@ -115,7 +100,6 @@ function Cron(props) {
       }
     }
   };
-
   var onReset = function onReset() {
     setSecond('*');
     setMinute('*');
@@ -124,46 +108,38 @@ function Cron(props) {
     setMonth('*');
     setWeek('?');
     setYear('*');
-
     if (onOk) {
       onOk(['*', '*', '*', '*', '*', '?', '*'].join(' '));
     }
   };
-
   var onGenerate = function onGenerate() {
     if (onOk) {
       onOk([second, minute, hour, day, month, week, year].join(' '));
     }
   };
-
   var onChangeDay = function onChangeDay(v) {
     setDay(v);
-
     if (v !== '?') {
       setWeek('?');
     }
   };
-
   var onChangeWeek = function onChangeWeek(v) {
     setWeek(v);
-
     if (v !== '?') {
       setDay('?');
     }
   };
-
   useEffect(onParse, [value]);
   var footerRendererWrapper = useCallback(function () {
     if (footerRenderer && typeof footerRenderer === 'function') {
       return footerRenderer(onReset, onGenerate);
     }
-
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_Button, {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Button, {
       style: {
         marginRight: 10
       },
       onClick: onReset
-    }, "\u91CD\u7F6E"), /*#__PURE__*/React.createElement(_Button, {
+    }, "\u91CD\u7F6E"), /*#__PURE__*/React.createElement(Button, {
       type: "primary",
       onClick: onGenerate
     }, "\u751F\u6210"));
@@ -176,7 +152,7 @@ function Cron(props) {
       boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
       width: 600
     }, style)
-  }, /*#__PURE__*/React.createElement(_Tabs, {
+  }, /*#__PURE__*/React.createElement(Tabs, {
     tabBarGutter: 0,
     animated: true,
     destroyInactiveTabPane: true,
@@ -239,5 +215,4 @@ function Cron(props) {
     }, footerStyle)
   }, footerRendererWrapper()));
 }
-
 export default Cron;

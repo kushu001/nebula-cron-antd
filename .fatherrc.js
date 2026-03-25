@@ -11,15 +11,5 @@ export default {
     },
     cssModules: true,
     runtimeHelpers: true,
-    extraBabelPlugins: [
-        [
-            'babel-plugin-import',
-            {
-                libraryName: 'antd',
-                libraryDirectory: 'es',
-                style: true,
-            },
-        ],
-    ],
     extraRollupPlugins: [commonjs(), nodeResolve()],
 };

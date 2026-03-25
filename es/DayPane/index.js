@@ -1,5 +1,4 @@
-import "antd/es/radio/style";
-import _Radio from "antd/es/radio";
+import { Radio } from 'antd';
 import React from 'react';
 import InputFromInterval from './InputFromInterval';
 import InputFromTo from './InputFromTo';
@@ -8,12 +7,10 @@ var radioStyle = {
   display: 'block',
   lineHeight: '32px'
 };
-
 function DayPane(props) {
   var value = props.value,
-      onChange = props.onChange;
+    onChange = props.onChange;
   var currentRadio = 0;
-
   if (value === '*') {
     currentRadio = 0;
   } else if (value === '?') {
@@ -25,40 +22,38 @@ function DayPane(props) {
   } else {
     currentRadio = 4;
   }
-
   var onChangeRadio = function onChangeRadio(e) {
     var valueType = e.target.value;
     var defaultValues = ['*', '?', '1-1', '1/1', '1'];
     onChange(defaultValues[valueType]);
   };
-
-  return /*#__PURE__*/React.createElement(_Radio.Group, {
+  return /*#__PURE__*/React.createElement(Radio.Group, {
     style: {
       width: '100%'
     },
     value: currentRadio,
     onChange: onChangeRadio
-  }, /*#__PURE__*/React.createElement(_Radio, {
+  }, /*#__PURE__*/React.createElement(Radio, {
     style: radioStyle,
     value: 0
-  }, "\u6BCF\u4E00\u65E5"), /*#__PURE__*/React.createElement(_Radio, {
+  }, "\u6BCF\u4E00\u65E5"), /*#__PURE__*/React.createElement(Radio, {
     style: radioStyle,
     value: 1
-  }, "\u4E0D\u6307\u5B9A"), /*#__PURE__*/React.createElement(_Radio, {
+  }, "\u4E0D\u6307\u5B9A"), /*#__PURE__*/React.createElement(Radio, {
     style: radioStyle,
     value: 2
   }, /*#__PURE__*/React.createElement(InputFromTo, {
     disabled: currentRadio !== 2,
     value: value,
     onChange: onChange
-  })), /*#__PURE__*/React.createElement(_Radio, {
+  })), /*#__PURE__*/React.createElement(Radio, {
     style: radioStyle,
     value: 3
   }, /*#__PURE__*/React.createElement(InputFromInterval, {
     disabled: currentRadio !== 3,
     value: value,
     onChange: onChange
-  })), /*#__PURE__*/React.createElement(_Radio, {
+  })), /*#__PURE__*/React.createElement(Radio, {
     style: radioStyle,
     value: 4
   }, /*#__PURE__*/React.createElement(InputSpecified, {
@@ -67,5 +62,4 @@ function DayPane(props) {
     onChange: onChange
   })));
 }
-
 export default DayPane;
