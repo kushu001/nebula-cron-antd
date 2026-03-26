@@ -38,14 +38,19 @@
     "lib/**/style/*",
     "*.less"
   ],
+  "peerDependencies": {
+    "antd": ">=5.0.0",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
   "dependencies": {
-    "antd": "^5.0.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.1",
-    "@babel/runtime": "7.12.5"
+    "@babel/runtime": "^7.12.5"
   },
   "devDependencies": {
-    "father": "^2.29.6"
+    "father": "^2.29.6",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "antd": "^5.0.0"
   },
   "license": "MIT"
 }
