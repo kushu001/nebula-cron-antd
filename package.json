@@ -1,27 +1,28 @@
 {
-  "name": "nebula-cron-antd",
-  "version": "5.2.2",
+  "name": "@nebula/antd-cron",
+  "version": "5.2.3",
   "author": "zhengxiangqi",
   "maintainers": [
     "kushu001"
   ],
-  "description": "react cron antd",
+  "description": "react cron antd component for nebula",
   "keywords": [
     "react",
     "cron",
-    "antd"
+    "antd",
+    "nebula"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "father build"
   },
-  "homepage": "https://github.com/kushu001/nebula-cron-antd#readme",
+  "homepage": "https://github.com/kushu001/nebula-antd-cron#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kushu001/nebula-cron-antd.git"
+    "url": "git+https://github.com/kushu001/nebula-antd-cron.git"
   },
   "bugs": {
-    "url": "https://github.com/kushu001/nebula-cron-antd/issues"
+    "url": "https://github.com/kushu001/nebula-antd-cron/issues"
   },
   "main": "lib/index.js",
   "module": "es/index.js",

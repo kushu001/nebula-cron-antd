@@ -1,5 +1,5 @@
 <div align="center">
-    <h1>Nebula Cron Antd</h1>
+    <h1>@nebula/antd-cron</h1>
     <div>基于 React 及 Antd 的 cron 时间表达式生成器</div>
     <br/>
     <div>
@@ -23,7 +23,7 @@
 - ✅ 修复了兼容性问题
 - ✅ 持续维护和更新
 
-> 如果你正在使用 Ant Design 5.x 或 React 18，请使用本仓库的 `nebula-cron-antd` 包。
+> 如果你正在使用 Ant Design 5.x 或 React 18，请使用本仓库的 `@nebula/antd-cron` 包。
 
 ***
 
@@ -41,9 +41,9 @@
 ## 📦 安装
 
 ```bash
-npm install nebula-cron-antd
+npm install @nebula/antd-cron
 # 或
-yarn add nebula-cron-antd
+yarn add @nebula/antd-cron
 ```
 
 ***
@@ -54,7 +54,7 @@ yarn add nebula-cron-antd
 
 ```jsx
 import React from 'react';
-import NebulaCron from 'nebula-cron-antd';
+import NebulaCron from '@nebula/antd-cron';
 
 function Page() {
     return <NebulaCron value="* * * * ? *" onOk={(value) => console.log('cron:', value)} />;
@@ -69,7 +69,7 @@ export default Page;
 
 ```jsx
 import React from 'react';
-import NebulaCron from 'nebula-cron-antd';
+import NebulaCron from '@nebula/antd-cron';
 
 function Page() {
     const tabItems = [
@@ -114,7 +114,7 @@ export default Page;
 ```jsx
 import React from 'react';
 import { Dropdown, Input } from 'antd';
-import NebulaCron from 'nebula-cron-antd';
+import NebulaCron from '@nebula/antd-cron';
 
 function CronInput(props) {
     const { value, onChange } = props;
@@ -196,8 +196,8 @@ yarn build
    - 点击页面右上角的 Fork 按钮
 2. **克隆你的 Fork**
    ```bash
-   git clone https://github.com/你的用户名/react-cron-antd.git
-   cd react-cron-antd
+   git clone https://github.com/你的用户名/nebula-antd-cron.git
+   cd nebula-antd-cron
    ```
 3. **创建特性分支**
    ```bash

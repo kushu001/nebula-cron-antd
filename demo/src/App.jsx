@@ -13,7 +13,7 @@ function App() {
     <Layout style={{ minHeight: '100vh', background: '#f0f2f5' }}>
       <Header style={{ background: '#001529', padding: '0 50px', display: 'flex', alignItems: 'center' }}>
         <Title level={3} style={{ color: '#fff', margin: 0 }}>
-          Nebula Cron Antd Demo
+          @nebula/antd-cron Demo
         </Title>
       </Header>
       <Content style={{ padding: '50px' }}>
