@@ -33,6 +33,55 @@ function NebulaCron(props) {
     const [week, setWeek] = useState('?');
     const [year, setYear] = useState('*');
 
+    const getCronValue = () => {
+        const tabTypes = tabs.map(tab => tab.type);
+        const values = [];
+        
+        if (tabTypes.includes('second')) {
+            values.push(second);
+        } else {
+            values.push('*');
+        }
+        
+        if (tabTypes.includes('minute')) {
+            values.push(minute);
+        } else {
+            values.push('*');
+        }
+        
+        if (tabTypes.includes('hour')) {
+            values.push(hour);
+        } else {
+            values.push('*');
+        }
+        
+        if (tabTypes.includes('day')) {
+            values.push(day);
+        } else {
+            values.push('*');
+        }
+        
+        if (tabTypes.includes('month')) {
+            values.push(month);
+        } else {
+            values.push('*');
+        }
+        
+        if (tabTypes.includes('week')) {
+            values.push(week);
+        } else {
+            values.push('?');
+        }
+        
+        if (tabTypes.includes('year')) {
+            values.push(year);
+        } else {
+            values.push('*');
+        }
+        
+        return values.join(' ');
+    };
+
     const onParse = () => {
         if (value) {
             try {
@@ -65,21 +114,24 @@ function NebulaCron(props) {
     };
 
     const onReset = () => {
-        setSecond('*');
-        setMinute('*');
-        setHour('*');
-        setDay('*');
-        setMonth('*');
-        setWeek('?');
-        setYear('*');
+        const tabTypes = tabs.map(tab => tab.type);
+        
+        setSecond(tabTypes.includes('second') ? '*' : undefined);
+        setMinute(tabTypes.includes('minute') ? '*' : undefined);
+        setHour(tabTypes.includes('hour') ? '*' : undefined);
+        setDay(tabTypes.includes('day') ? '*' : undefined);
+        setMonth(tabTypes.includes('month') ? '*' : undefined);
+        setWeek(tabTypes.includes('week') ? '?' : undefined);
+        setYear(tabTypes.includes('year') ? '*' : undefined);
+        
         if (onOk) {
-            onOk(['*', '*', '*', '*', '*', '?', '*'].join(' '));
+            onOk(getCronValue());
         }
     };
 
     const onGenerate = () => {
         if (onOk) {
-            onOk([second, minute, hour, day, month, week, year].join(' '));
+            onOk(getCronValue());
         }
     };
 
