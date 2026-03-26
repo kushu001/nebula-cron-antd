@@ -14,7 +14,7 @@ const standardTabItems = [
 ];
 
 function StandardMode() {
-  const [cronValue, setCronValue] = useState('0 * * * * ?');
+  const [cronValue, setCronValue] = useState('* * * * ?');
 
   return (
     <div>

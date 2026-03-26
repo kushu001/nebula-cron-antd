@@ -15,7 +15,7 @@ const customOrderTabItems = [
 ];
 
 function CustomOrderMode() {
-  const [cronValue, setCronValue] = useState('0 0 * * * ? *');
+  const [cronValue, setCronValue] = useState('0 0 * * * *');
 
   return (
     <div>
