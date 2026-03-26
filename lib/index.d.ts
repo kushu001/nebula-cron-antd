@@ -19,6 +19,14 @@ interface IProps {
      * 点击生成按钮时调用该回调
      */
     onOk?: (value: string) => void;
+    /**
+     * 自定义显示的标签页
+     */
+    tabs?: Array<{
+        key: string;
+        label: string;
+        type: 'second' | 'minute' | 'hour' | 'day' | 'month' | 'week' | 'year';
+    }>;
 }
 
-export default function Cron(props: IProps): React.ReactNode;
+export default function NebulaCron(props: IProps): React.ReactNode;
