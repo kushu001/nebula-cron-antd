@@ -39,44 +39,30 @@ function NebulaCron(props) {
         
         if (tabTypes.includes('second')) {
             values.push(second);
-        } else {
-            values.push('*');
         }
         
         if (tabTypes.includes('minute')) {
             values.push(minute);
-        } else {
-            values.push('*');
         }
         
         if (tabTypes.includes('hour')) {
             values.push(hour);
-        } else {
-            values.push('*');
         }
         
         if (tabTypes.includes('day')) {
             values.push(day);
-        } else {
-            values.push('*');
         }
         
         if (tabTypes.includes('month')) {
             values.push(month);
-        } else {
-            values.push('*');
         }
         
         if (tabTypes.includes('week')) {
             values.push(week);
-        } else {
-            values.push('?');
         }
         
         if (tabTypes.includes('year')) {
             values.push(year);
-        } else {
-            values.push('*');
         }
         
         return values.join(' ');
