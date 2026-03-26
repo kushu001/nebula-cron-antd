@@ -9,13 +9,22 @@ import SecondPane from './SecondPane';
 import WeekPane from './WeekPane';
 import YearPane from './YearPane';
 
-const { TabPane } = Tabs;
 const tabPaneStyle = { paddingLeft: 10, paddingBottom: 8, marginTop: -10 };
 const getTabTitle = (text) => <div style={{ width: 50, textAlign: 'center' }}>{text}</div>;
 
-function Cron(props) {
-    const { style, footerStyle, footerRenderer, value, onOk } = props;
-    const [currentTab, setCurrentTab] = useState('1');
+const allTabItems = [
+    { key: '1', label: '秒', type: 'second' },
+    { key: '2', label: '分', type: 'minute' },
+    { key: '3', label: '时', type: 'hour' },
+    { key: '4', label: '日', type: 'day' },
+    { key: '5', label: '月', type: 'month' },
+    { key: '6', label: '周', type: 'week' },
+    { key: '7', label: '年', type: 'year' }
+];
+
+function NebulaCron(props) {
+    const { style, footerStyle, footerRenderer, value, onOk, tabs = allTabItems } = props;
+    const [currentTab, setCurrentTab] = useState(() => tabs[0]?.key || '1');
     const [second, setSecond] = useState('*');
     const [minute, setMinute] = useState('*');
     const [hour, setHour] = useState('*');
@@ -90,6 +99,33 @@ function Cron(props) {
 
     useEffect(onParse, [value]);
 
+    const tabItems = tabs.map(tab => {
+        const commonProps = {
+            key: tab.key,
+            label: getTabTitle(tab.label),
+            style: tabPaneStyle
+        };
+
+        switch (tab.type) {
+            case 'second':
+                return { ...commonProps, children: <SecondPane value={second} onChange={setSecond} /> };
+            case 'minute':
+                return { ...commonProps, children: <MinutePane value={minute} onChange={setMinute} /> };
+            case 'hour':
+                return { ...commonProps, children: <HourPane value={hour} onChange={setHour} /> };
+            case 'day':
+                return { ...commonProps, children: <DayPane value={day} onChange={onChangeDay} /> };
+            case 'month':
+                return { ...commonProps, children: <MonthPane value={month} onChange={setMonth} /> };
+            case 'week':
+                return { ...commonProps, children: <WeekPane value={week} onChange={onChangeWeek} /> };
+            case 'year':
+                return { ...commonProps, children: <YearPane value={year} onChange={setYear} /> };
+            default:
+                return null;
+        }
+    }).filter(Boolean);
+
     const footerRendererWrapper = useCallback(() => {
         if (footerRenderer && typeof footerRenderer === 'function') {
             return footerRenderer(onReset, onGenerate);
@@ -117,29 +153,14 @@ function Cron(props) {
                 ...style,
             }}
         >
-            <Tabs tabBarGutter={0} animated destroyInactiveTabPane activeKey={currentTab} onChange={setCurrentTab}>
-                <TabPane tab={getTabTitle('秒')} key="1" style={tabPaneStyle}>
-                    <SecondPane value={second} onChange={setSecond} />
-                </TabPane>
-                <TabPane tab={getTabTitle('分')} key="2" style={tabPaneStyle}>
-                    <MinutePane value={minute} onChange={setMinute} />
-                </TabPane>
-                <TabPane tab={getTabTitle('时')} key="3" style={tabPaneStyle}>
-                    <HourPane value={hour} onChange={setHour} />
-                </TabPane>
-                <TabPane tab={getTabTitle('日')} key="4" style={tabPaneStyle}>
-                    <DayPane value={day} onChange={onChangeDay} />
-                </TabPane>
-                <TabPane tab={getTabTitle('月')} key="5" style={tabPaneStyle}>
-                    <MonthPane value={month} onChange={setMonth} />
-                </TabPane>
-                <TabPane tab={getTabTitle('周')} key="6" style={tabPaneStyle}>
-                    <WeekPane value={week} onChange={onChangeWeek} />
-                </TabPane>
-                <TabPane tab={getTabTitle('年')} key="7" style={tabPaneStyle}>
-                    <YearPane value={year} onChange={setYear} />
-                </TabPane>
-            </Tabs>
+            <Tabs
+                tabBarGutter={0}
+                animated
+                destroyOnHidden
+                activeKey={currentTab}
+                onChange={setCurrentTab}
+                items={tabItems}
+            />
             <div style={{ borderTop: '1px solid #e8e8e8', padding: 10, textAlign: 'right', ...footerStyle }}>
                 {footerRendererWrapper()}
             </div>
@@ -147,4 +168,4 @@ function Cron(props) {
     );
 }
 
-export default Cron;
+export default NebulaCron;

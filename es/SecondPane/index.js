@@ -34,7 +34,7 @@ function SecondPane(props) {
   }, /*#__PURE__*/React.createElement(Radio, {
     style: radioStyle,
     value: 0
-  }, "\u6BCF\u4E00\u79D2\u949F1"), /*#__PURE__*/React.createElement(Radio, {
+  }, "\u6BCF\u4E00\u79D2\u949F"), /*#__PURE__*/React.createElement(Radio, {
     style: radioStyle,
     value: 1
   }, /*#__PURE__*/React.createElement(InputFromTo, {

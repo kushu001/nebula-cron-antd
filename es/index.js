@@ -10,7 +10,6 @@ import MonthPane from './MonthPane';
 import SecondPane from './SecondPane';
 import WeekPane from './WeekPane';
 import YearPane from './YearPane';
-var TabPane = Tabs.TabPane;
 var tabPaneStyle = {
   paddingLeft: 10,
   paddingBottom: 8,
@@ -24,13 +23,47 @@ var getTabTitle = function getTabTitle(text) {
     }
   }, text);
 };
-function Cron(props) {
+var allTabItems = [{
+  key: '1',
+  label: '秒',
+  type: 'second'
+}, {
+  key: '2',
+  label: '分',
+  type: 'minute'
+}, {
+  key: '3',
+  label: '时',
+  type: 'hour'
+}, {
+  key: '4',
+  label: '日',
+  type: 'day'
+}, {
+  key: '5',
+  label: '月',
+  type: 'month'
+}, {
+  key: '6',
+  label: '周',
+  type: 'week'
+}, {
+  key: '7',
+  label: '年',
+  type: 'year'
+}];
+function NebulaCron(props) {
   var style = props.style,
     footerStyle = props.footerStyle,
     footerRenderer = props.footerRenderer,
     value = props.value,
-    onOk = props.onOk;
-  var _useState = useState('1'),
+    onOk = props.onOk,
+    _props$tabs = props.tabs,
+    tabs = _props$tabs === void 0 ? allTabItems : _props$tabs;
+  var _useState = useState(function () {
+      var _tabs$;
+      return ((_tabs$ = tabs[0]) === null || _tabs$ === void 0 ? void 0 : _tabs$.key) || '1';
+    }),
     _useState2 = _slicedToArray(_useState, 2),
     currentTab = _useState2[0],
     setCurrentTab = _useState2[1];
@@ -130,6 +163,66 @@ function Cron(props) {
     }
   };
   useEffect(onParse, [value]);
+  var tabItems = tabs.map(function (tab) {
+    var commonProps = {
+      key: tab.key,
+      label: getTabTitle(tab.label),
+      style: tabPaneStyle
+    };
+    switch (tab.type) {
+      case 'second':
+        return _objectSpread(_objectSpread({}, commonProps), {}, {
+          children: /*#__PURE__*/React.createElement(SecondPane, {
+            value: second,
+            onChange: setSecond
+          })
+        });
+      case 'minute':
+        return _objectSpread(_objectSpread({}, commonProps), {}, {
+          children: /*#__PURE__*/React.createElement(MinutePane, {
+            value: minute,
+            onChange: setMinute
+          })
+        });
+      case 'hour':
+        return _objectSpread(_objectSpread({}, commonProps), {}, {
+          children: /*#__PURE__*/React.createElement(HourPane, {
+            value: hour,
+            onChange: setHour
+          })
+        });
+      case 'day':
+        return _objectSpread(_objectSpread({}, commonProps), {}, {
+          children: /*#__PURE__*/React.createElement(DayPane, {
+            value: day,
+            onChange: onChangeDay
+          })
+        });
+      case 'month':
+        return _objectSpread(_objectSpread({}, commonProps), {}, {
+          children: /*#__PURE__*/React.createElement(MonthPane, {
+            value: month,
+            onChange: setMonth
+          })
+        });
+      case 'week':
+        return _objectSpread(_objectSpread({}, commonProps), {}, {
+          children: /*#__PURE__*/React.createElement(WeekPane, {
+            value: week,
+            onChange: onChangeWeek
+          })
+        });
+      case 'year':
+        return _objectSpread(_objectSpread({}, commonProps), {}, {
+          children: /*#__PURE__*/React.createElement(YearPane, {
+            value: year,
+            onChange: setYear
+          })
+        });
+      default:
+        return null;
+    }
+  }).filter(Boolean);
   var footerRendererWrapper = useCallback(function () {
     if (footerRenderer && typeof footerRenderer === 'function') {
       return footerRenderer(onReset, onGenerate);
@@ -155,59 +248,11 @@ function Cron(props) {
   }, /*#__PURE__*/React.createElement(Tabs, {
     tabBarGutter: 0,
     animated: true,
-    destroyInactiveTabPane: true,
+    destroyOnHidden: true,
     activeKey: currentTab,
-    onChange: setCurrentTab
-  }, /*#__PURE__*/React.createElement(TabPane, {
-    tab: getTabTitle('秒'),
-    key: "1",
-    style: tabPaneStyle
-  }, /*#__PURE__*/React.createElement(SecondPane, {
-    value: second,
-    onChange: setSecond
-  })), /*#__PURE__*/React.createElement(TabPane, {
-    tab: getTabTitle('分'),
-    key: "2",
-    style: tabPaneStyle
-  }, /*#__PURE__*/React.createElement(MinutePane, {
-    value: minute,
-    onChange: setMinute
-  })), /*#__PURE__*/React.createElement(TabPane, {
-    tab: getTabTitle('时'),
-    key: "3",
-    style: tabPaneStyle
-  }, /*#__PURE__*/React.createElement(HourPane, {
-    value: hour,
-    onChange: setHour
-  })), /*#__PURE__*/React.createElement(TabPane, {
-    tab: getTabTitle('日'),
-    key: "4",
-    style: tabPaneStyle
-  }, /*#__PURE__*/React.createElement(DayPane, {
-    value: day,
-    onChange: onChangeDay
-  })), /*#__PURE__*/React.createElement(TabPane, {
-    tab: getTabTitle('月'),
-    key: "5",
-    style: tabPaneStyle
-  }, /*#__PURE__*/React.createElement(MonthPane, {
-    value: month,
-    onChange: setMonth
-  })), /*#__PURE__*/React.createElement(TabPane, {
-    tab: getTabTitle('周'),
-    key: "6",
-    style: tabPaneStyle
-  }, /*#__PURE__*/React.createElement(WeekPane, {
-    value: week,
-    onChange: onChangeWeek
-  })), /*#__PURE__*/React.createElement(TabPane, {
-    tab: getTabTitle('年'),
-    key: "7",
-    style: tabPaneStyle
-  }, /*#__PURE__*/React.createElement(YearPane, {
-    value: year,
-    onChange: setYear
-  }))), /*#__PURE__*/React.createElement("div", {
+    onChange: setCurrentTab,
+    items: tabItems
+  }), /*#__PURE__*/React.createElement("div", {
     style: _objectSpread({
       borderTop: '1px solid #e8e8e8',
       padding: 10,
@@ -215,4 +260,4 @@ function Cron(props) {
     }, footerStyle)
   }, footerRendererWrapper()));
 }
-export default Cron;
+export default NebulaCron;

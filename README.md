@@ -1,5 +1,5 @@
 <div align="center">
-    <h1>ReactCron</h1>
+    <h1>Nebula Cron Antd</h1>
     <div>基于 React 及 Antd 的 cron 时间表达式生成器</div>
     <br/>
     <div>
@@ -12,7 +12,7 @@
     <img width="613" src="./snapshot.png" alt="效果图" />
 </div>
 
----
+***
 
 ## 📋 项目背景
 
@@ -25,7 +25,7 @@
 
 > 如果你正在使用 Ant Design 5.x 或 React 18，请使用本仓库的 `nebula-cron-antd` 包。
 
----
+***
 
 ## ✨ 特性
 
@@ -36,7 +36,7 @@
 - 🎉 基于 React 18 和 Ant Design 5
 - 🎉 完全开源，MIT 许可证
 
----
+***
 
 ## 📦 安装
 
@@ -46,7 +46,7 @@ npm install nebula-cron-antd
 yarn add nebula-cron-antd
 ```
 
----
+***
 
 ## 🚀 使用
 
@@ -54,14 +54,58 @@ yarn add nebula-cron-antd
 
 ```jsx
 import React from 'react';
-import Cron from 'nebula-cron-antd';
+import NebulaCron from 'nebula-cron-antd';
 
 function Page() {
-    return <Cron value="* * * * * ? *" onOk={(value) => console.log('cron:', value)} />;
+    return <NebulaCron value="* * * * ? *" onOk={(value) => console.log('cron:', value)} />;
 }
 
 export default Page;
 ```
+
+### 自定义显示的 Tab
+
+你可以通过 `tabs` 属性来控制显示哪些时间单位：
+
+```jsx
+import React from 'react';
+import NebulaCron from 'nebula-cron-antd';
+
+function Page() {
+    const tabItems = [
+        { key: '2', label: '分', type: 'minute' },
+        { key: '3', label: '时', type: 'hour' },
+        { key: '4', label: '日', type: 'day' },
+        { key: '5', label: '月', type: 'month' }
+    ];
+    
+    return (
+        <NebulaCron 
+            value="* * * ? *"
+            tabs={tabItems}
+            onOk={(value) => console.log('cron:', value)} 
+        />
+    );
+}
+
+export default Page;
+```
+
+`tabs` 属性是一个数组，每个元素包含：
+- `key` - 唯一标识
+- `label` - 显示的标签文本
+- `type` - 时间单位类型
+
+可选的 `type` 值：
+- `'second'` - 秒
+- `'minute'` - 分
+- `'hour'` - 时
+- `'day'` - 日
+- `'month'` - 月
+- `'week'` - 周
+- `'year'` - 年
+
+默认值：显示所有 7 个时间单位（秒、分、时、日、月、周、年）
 
 ### 扩展用法
 
@@ -70,7 +114,7 @@ export default Page;
 ```jsx
 import React from 'react';
 import { Dropdown, Input } from 'antd';
-import Cron from 'nebula-cron-antd';
+import NebulaCron from 'nebula-cron-antd';
 
 function CronInput(props) {
     const { value, onChange } = props;
@@ -79,7 +123,7 @@ function CronInput(props) {
         <Dropdown
             trigger={['click']}
             placement="bottomLeft"
-            overlay={<Cron value={value} onOk={onChange} />}
+            overlay={<NebulaCron value={value} onOk={onChange} />}
         >
             <Input.Search value={value} />
         </Dropdown>
@@ -89,7 +133,7 @@ function CronInput(props) {
 export default CronInput;
 ```
 
----
+***
 
 ## 🛠️ 开发指南
 
@@ -140,7 +184,7 @@ npm run build
 yarn build
 ```
 
----
+***
 
 ## 🤝 参与贡献
 
@@ -150,34 +194,28 @@ yarn build
 
 1. **Fork 本项目**
    - 点击页面右上角的 Fork 按钮
-
 2. **克隆你的 Fork**
    ```bash
    git clone https://github.com/你的用户名/react-cron-antd.git
    cd react-cron-antd
    ```
-
 3. **创建特性分支**
    ```bash
    git checkout -b feature/你的特性名称
    ```
-
 4. **进行开发**
    - 启动示例项目查看效果
    - 修改代码
    - 确保代码风格一致
-
 5. **提交更改**
    ```bash
    git add .
    git commit -m "feat: 添加你的功能描述"
    ```
-
 6. **推送到你的 Fork**
    ```bash
    git push origin feature/你的特性名称
    ```
-
 7. **创建 Pull Request**
    - 在 GitHub 上创建 PR
    - 详细描述你的更改
@@ -198,13 +236,13 @@ yarn build
 - 确保代码通过构建
 - 更新相关文档
 
----
+***
 
 ## 📝 更新日志
 
 查看详细的更新日志：[CHANGELOG.md](./CHANGELOG.md)
 
----
+***
 
 ## 📄 许可证
 
@@ -215,13 +253,13 @@ Copyright (c) 2019-present zhengxiangqi
 Copyright (c) 2025-present kushu001
 ```
 
----
+***
 
 ## 🙏 致谢
 
 感谢原作者 [zhengxiangqi](https://github.com/zhengxiangqi) 创建了这个优秀的项目。
 
----
+***
 
 ## 📮 联系方式
 
@@ -231,7 +269,7 @@ Copyright (c) 2025-present kushu001
 - 🔀 发起 Pull Request
 - 💬 通过其他方式联系项目维护者
 
----
+***
 
 <div align="center">
   如果这个项目对你有帮助，请给个 ⭐️ Star 支持一下！
