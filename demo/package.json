@@ -1,5 +1,5 @@
 {
-  "name": "@nebula/antd-cron-demo",
+  "name": "nebula-antd-cron-demo",
   "version": "1.0.0",
   "type": "module",
   "scripts": {

@@ -1,6 +1,6 @@
 # 更新日志
 
-`@nebula/antd-cron` 基于React及Antd的cron时间表达式生成器。
+`nebula-antd-cron` 基于React及Antd的cron时间表达式生成器。
 
 ---
 
@@ -8,7 +8,7 @@
 
 `2026-03-26`
 
-- 🎉 品牌全新升级，`@nebula/antd-cron`组件
+- 🎉 品牌全新升级，`nebula-antd-cron`组件
 
 ---
 
