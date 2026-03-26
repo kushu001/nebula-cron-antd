@@ -94,21 +94,26 @@ function NebulaCron(props) {
                 weekVal = weekRegex.test(weekVal) ? weekVal : '?';
                 weekVal = dayVal !== '?' ? '?' : weekVal;
                 yearVal = yearRegex.test(yearVal) ? yearVal : '*';
-                setSecond(secondVal);
-                setMinute(minuteValue);
-                setHour(hourVal);
-                setDay(dayVal);
-                setMonth(monthVal);
-                setWeek(weekVal);
-                setYear(yearVal);
+                
+                const tabTypes = tabs.map(tab => tab.type);
+                
+                setSecond(tabTypes.includes('second') ? secondVal : undefined);
+                setMinute(tabTypes.includes('minute') ? minuteValue : undefined);
+                setHour(tabTypes.includes('hour') ? hourVal : undefined);
+                setDay(tabTypes.includes('day') ? dayVal : undefined);
+                setMonth(tabTypes.includes('month') ? monthVal : undefined);
+                setWeek(tabTypes.includes('week') ? weekVal : undefined);
+                setYear(tabTypes.includes('year') ? yearVal : undefined);
             } catch (error) {
-                setSecond('*');
-                setMinute('*');
-                setHour('*');
-                setDay('*');
-                setMonth('*');
-                setWeek('?');
-                setYear('*');
+                const tabTypes = tabs.map(tab => tab.type);
+                
+                setSecond(tabTypes.includes('second') ? '*' : undefined);
+                setMinute(tabTypes.includes('minute') ? '*' : undefined);
+                setHour(tabTypes.includes('hour') ? '*' : undefined);
+                setDay(tabTypes.includes('day') ? '*' : undefined);
+                setMonth(tabTypes.includes('month') ? '*' : undefined);
+                setWeek(tabTypes.includes('week') ? '?' : undefined);
+                setYear(tabTypes.includes('year') ? '*' : undefined);
             }
         }
     };
